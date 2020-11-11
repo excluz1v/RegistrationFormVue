@@ -1,0 +1,109 @@
+#app {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin-top: 30px;
+    text-align: left;
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  select {
+    padding: 5px;
+  }
+  html {
+    box-sizing: border-box;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  input {
+    &:focus {
+      outline: none;
+    }
+    &:focus {
+      border-color: #66afe9;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+        0 0 8px rgba(102, 175, 233, 0.6);
+    }
+  }
+  .formHead {
+    display: flex;
+    height: 2rem;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+    font-weight: bold;
+    background-color: #22b2ea;
+    color: #fff;
+    // excluz1v/RegistrationFormVue
+    // git remote add origin https://github.com/excluz1v/RegistrationFormVue
+  }
+  .formBody {
+    display: flex;
+    padding: 15px 10px;
+    flex-wrap: wrap;
+    label {
+      padding: 0 20px;
+    }
+    img {
+      width: 40px;
+      height: 60px;
+    }
+  }
+  .date {
+    label {
+      display: block;
+      max-width: 120px;
+    }
+  }
+  @media (min-width: 280px) {
+    body { padding: 0 calc(50% - 270px);}
+   select {
+     width: 75%;
+   }
+   .modal {
+     width: 75vw;
+     height: 35vh;
+     max-height: 150px;
+   }
+  }
+  @media (min-width: 500px) {
+    body { padding: 0 calc(50% - 270px);}
+   select {
+     width: 50%;
+
+   }
+   .modal {
+    height: 25vh;    
+      max-width: 350px;
+  }
+  }
+  @media (min-width: 768px) {
+    body {
+      padding: 0 calc(50% - 360px);
+    }
+  }
+  @media (min-width: 992px) {
+    body {
+      padding: 0 calc(50% - 480px);
+    }
+    select {
+      width: 25%;
+    }
+  }
+  @media (min-width: 1200px) {
+    body {
+      padding: 0 calc(50% - 500px);
+    }
+    .modal {
+      width: 25%;
+      height: 25vh;
+      max-height: 150px;
+    }
+    
+  }

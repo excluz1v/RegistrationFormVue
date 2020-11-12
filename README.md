@@ -1,3 +1,13 @@
+Test project
+Client`s form creation with VUE, Vuelidate, Sass
+1. Personal information
+2. Adress
+3 Passport
+
+Check this live
+https://excluz1v.github.io/RegistrationFormVue/
+
+
 # medods_test
 
 ## Project setup

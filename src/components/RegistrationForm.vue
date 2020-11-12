@@ -1,8 +1,16 @@
 <template>
   <form class="registration" @submit="submit" @input="completeChanger">
-    <PersonalInformation :isValid="isPersonalInformationValid" />
+    <PersonalInformation
+      :isValid="isPersonalInformationValid"
+      :mounthCheck="mounthCheck"
+      :mounthError="mounthError"
+    />
     <Adress :isValid="isAdressValid" />
-    <Passport :isValid="isPassportValid" />
+    <Passport
+      :isValid="isPassportValid"
+      :mounthCheck="mounthCheck"
+      :mounthError="mounthError"
+    />
     <button type="submit" class="submit" :disabled="!complete">
       Зарегистрироваться
     </button>
@@ -49,6 +57,26 @@ export default {
     closeModal() {
       this.$data.completeMsg = false;
     },
+    mounthCheck(day, mounth) {
+      this.mounthError = "";
+      switch (mounth) {
+        case "02":
+          if (+day > 29) this.mounthError = "В феврале не более 29 дней";
+          break;
+        case "04":
+          if (+day > 30) this.mounthError = "В апреле не более 30 дней";
+          break;
+        case "06":
+          if (+day > 30) this.mounthError = "В июне не более 30 дней";
+          break;
+        case "09":
+          if (+day > 30) this.mounthError = "В сентябре не более 30 дней";
+          break;
+        case "11":
+          if (+day > 30) this.mounthError = "В ноябре не более 30 дней";
+          break;
+      }
+    },
   },
   data() {
     return {
@@ -57,6 +85,7 @@ export default {
       passport: false,
       complete: false,
       completeMsg: true,
+      mounthError: "",
     };
   },
 };

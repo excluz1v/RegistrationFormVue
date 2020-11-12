@@ -90,12 +90,18 @@
     >
       {{ "Номер должен начинаться с 7" }}
     </li>
+    <li
+      v-if="mounthError !== undefined && mounthError !== ''"
+      :class="mounthError ? 'isInvalid' : ''"
+    >
+      {{ mounthError }}
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
-  props: { validationData: Object },
+  props: { validationData: Object, mounthError: String },
 };
 </script>
 

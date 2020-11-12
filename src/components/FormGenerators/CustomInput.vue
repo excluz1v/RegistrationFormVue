@@ -9,11 +9,12 @@
           v-model.trim="newInput.validationData.$model"
           v-bind="newInput.atrbts"
           :class="
-            newInput.validationData.$error
+            newInput.validationData.$error || !!mounthError
               ? 'error'
-              : '' + !newInput.validationData.$error &&
-                newInput.validationData.$model &&
-                newInput.validationData.$dirty
+              : ('' + !newInput.validationData.$error &&
+                  newInput.validationData.$model &&
+                  newInput.validationData.$dirty) ||
+                (mounthError !== undefined && !!mounthError)
               ? 'passed'
               : ''
           "
@@ -21,6 +22,11 @@
         <ValidationError
           v-if="newInput.validationData"
           :validationData="newInput.validationData"
+        />
+        <ValidationError
+          v-if="index === 1"
+          :mounthError="mounthError"
+          :validationData="{}"
         />
       </label>
     </div>
@@ -38,6 +44,7 @@ export default {
     headText: String,
     allInputs: Array,
     className: String,
+    mounthError: String,
   },
 };
 </script>

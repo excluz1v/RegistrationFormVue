@@ -1,5 +1,5 @@
 <template>
-  <div class="passport" @input="check">
+  <div class="passport" @input="globalCheck">
     <CustomSelect
       :headText="'Тип документа'"
       :multiple="false"
@@ -40,6 +40,7 @@
       ]"
     />
     <CustomInput
+      :mounthError="mounthError"
       :headText="'Дата выдачи*'"
       :className="'date'"
       :allInputs="[
@@ -84,7 +85,7 @@ export default {
     CustomInput,
     CustomSelect,
   },
-  props: ["isValid"],
+  props: ["isValid", "mounthCheck", "mounthError"],
   mixins: [validationMixin],
   validations: {
     form: {
@@ -105,7 +106,7 @@ export default {
         },
         year: {
           required,
-          maxValue: maxValue(new Date().getFullYear() - 15),
+          maxValue: maxValue(new Date().getFullYear()),
           minValue: minValue(1920),
           minLength: minLength(4),
           numeric,
@@ -152,8 +153,15 @@ export default {
     };
   },
   methods: {
-    check() {
+    checkValid() {
       this.isValid(this.$v.$invalid);
+    },
+    globalCheck() {
+      this.checkValid();
+      this.mounthCheck(
+        this.$v.form.date.day.$model,
+        this.$v.form.date.mounth.$model
+      );
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="personal" @input="check">
+  <div class="personal" @input="globalCheck">
     <CustomInput
       :headText="'ФИО'"
       :allInputs="[
@@ -24,6 +24,7 @@
       ]"
     />
     <CustomInput
+      :mounthError="mounthError"
       :headText="'Дата рождения*'"
       :className="'date'"
       :allInputs="[
@@ -138,7 +139,7 @@ export default {
     CustomInput,
     CustomSelect,
   },
-  props: ["isValid"],
+  props: ["isValid", "mounthCheck", "mounthError"],
   mixins: [validationMixin],
   validations: {
     form: {
@@ -245,8 +246,16 @@ export default {
     };
   },
   methods: {
-    check() {
+    checkValid() {
       this.isValid(this.$v.$invalid);
+    },
+
+    globalCheck() {
+      this.checkValid();
+      this.mounthCheck(
+        this.$v.form.date.day.$model,
+        this.$v.form.date.mounth.$model
+      );
     },
   },
 };
